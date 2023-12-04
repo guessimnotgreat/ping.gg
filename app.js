@@ -1,8 +1,10 @@
-const express = require('express')
+const express = require('express');
 const path = require("path");
-const app = express()
+const app = express();
 
-// #############################################################################
+// Middleware to parse JSON requests
+app.use(express.json());
+
 // Logs all request paths and method
 app.use(function (req, res, next) {
   res.set('x-timestamp', Date.now())
@@ -11,7 +13,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-// #############################################################################
 // This configures static hosting for files in /public that have the extensions
 // listed in the array.
 var options = {
@@ -22,9 +23,8 @@ var options = {
   maxAge: '1m',
   redirect: false
 }
-app.use(express.static('public', options))
+app.use(express.static('public', options));
 
-// #############################################################################
 // Handle form submission
 app.post('/submit', (req, res) => {
   const input1 = req.body.input1;
@@ -37,20 +37,19 @@ app.post('/submit', (req, res) => {
   res.send(result);
 });
 
-// #############################################################################
-// Catch all handler for all other request.
-app.use('*', (req,res) => {
+// Catch all handler for all other requests.
+app.use('*', (req, res) => {
   res.json({
-      at: new Date().toISOString(),
-      method: req.method,
-      hostname: req.hostname,
-      ip: req.ip,
-      query: req.query,
-      headers: req.headers,
-      cookies: req.cookies,
-      params: req.params
-    })
-    .end()
-})
+    at: new Date().toISOString(),
+    method: req.method,
+    hostname: req.hostname,
+    ip: req.ip,
+    query: req.query,
+    headers: req.headers,
+    cookies: req.cookies,
+    params: req.params
+  })
+  .end();
+});
 
-module.exports = app
+module.exports = app;
