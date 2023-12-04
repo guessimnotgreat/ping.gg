@@ -1,12 +1,12 @@
-const express = require('express');
+const express = require('express')
 const path = require("path");
-const app = express();
+const app = express()
 
 // #############################################################################
 // Logs all request paths and method
 app.use(function (req, res, next) {
-  res.set('x-timestamp', Date.now());
-  res.set('x-powered-by', 'cyclic.sh');
+  res.set('x-timestamp', Date.now())
+  res.set('x-powered-by', 'cyclic.sh')
   console.log(`[${new Date().toISOString()}] ${req.ip} ${req.method} ${req.path}`);
   next();
 });
@@ -14,32 +14,19 @@ app.use(function (req, res, next) {
 // #############################################################################
 // This configures static hosting for files in /public that have the extensions
 // listed in the array.
-const options = {
+var options = {
   dotfiles: 'ignore',
   etag: false,
-  extensions: ['htm', 'html', 'css', 'js', 'ico', 'jpg', 'jpeg', 'png', 'svg'],
+  extensions: ['htm', 'html','css','js','ico','jpg','jpeg','png','svg'],
   index: ['index.html'],
   maxAge: '1m',
   redirect: false
-};
-app.use(express.static('public', options));
-
-// #############################################################################
-// Handle form submission
-app.post('/submit', (req, res) => {
-  const input1 = req.body.input1;
-  const input2 = req.body.input2;
-
-  // Process the data as needed
-  const result = `Received: ${input1} and ${input2}`;
-
-  // Send the result back to the client
-  res.send(result);
-});
+}
+app.use(express.static('public', options))
 
 // #############################################################################
 // Catch all handler for all other request.
-app.use('*', (req, res) => {
+app.use('*', (req,res) => {
   res.json({
       at: new Date().toISOString(),
       method: req.method,
@@ -50,7 +37,7 @@ app.use('*', (req, res) => {
       cookies: req.cookies,
       params: req.params
     })
-    .end();
-});
+    .end()
+})
 
-module.exports = app;
+module.exports = app
