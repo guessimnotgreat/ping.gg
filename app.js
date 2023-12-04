@@ -25,6 +25,19 @@ var options = {
 app.use(express.static('public', options))
 
 // #############################################################################
+// Handle form submission
+app.post('/submit', (req, res) => {
+  const input1 = req.body.input1;
+  const input2 = req.body.input2;
+
+  // Process the data as needed
+  const result = `Received: ${input1} and ${input2}`;
+
+  // Send the result back to the client
+  res.send(result);
+});
+
+// #############################################################################
 // Catch all handler for all other request.
 app.use('*', (req,res) => {
   res.json({
