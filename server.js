@@ -1,7 +1,6 @@
-const app = require('./app')
-
-const port = process.env.PORT || 3000
-
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+var http = require('http');
+http.createServer(function (req, res) {
+    console.log(`Just got a request at ${req.url}!`)
+    res.write('Yo!');
+    res.end();
+}).listen(process.env.PORT || 3000);
