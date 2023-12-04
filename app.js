@@ -34,7 +34,7 @@ app.post('/submit', async (req, res) => {
   const idInfo = await fetchIDInfo(input1, input2);
 
   // Process the data as needed
-  const result = `Received: ${idInfo.puuid} and ${tagLine}`;
+  const result = `Received: ${idInfo.puuid} and ${idInfo.tagLine}`;
 
   // Send the result back to the client
   res.send(result);
