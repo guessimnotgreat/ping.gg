@@ -1,5 +1,3 @@
-const fetch = require('node-fetch');
-
 const API_KEY = 'RGAPI-7ce9c4d6-995b-4a74-b66a-8fcc763a2c3d';
 const BASE_URL = 'https://asia.api.riotgames.com';
 const PATH = '/riot/account/v1/accounts/by-riot-id/';
