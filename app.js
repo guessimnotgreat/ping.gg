@@ -31,14 +31,24 @@ app.post('/submit', async (req, res) => {
   const input1 = req.body.input1;
   const input2 = req.body.input2;
 
-  const idInfo = await fetchIDInfo(input1, input2);
+  try {
+    const idInfo = await fetchIDInfo(input1, input2);
 
-  // Process the data as needed
-  const result = `Received: ${idInfo.puuid} and ${idInfo.tagLine}`;
+    // Process the data as needed
+    const result = {
+        puuid: idInfo.puuid,
+        gameName: idInfo.gameName,
+        tagLine: idInfo.tagLine,
+    };
 
-  // Send the result back to the client
-  res.send(result);
+    // Send the result back to the client as JSON
+    res.json(result);
+  } catch (error) {
+    console.error(`Error fetching ID info: ${error.message}`);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
+
 
 // Catch all handler for all other requests.
 app.use('*', (req, res) => {

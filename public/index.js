@@ -17,8 +17,12 @@ document.getElementById('myForm').addEventListener('submit', async function (e) 
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
-        const result = await response.text();
-        document.getElementById('result').innerText = result;
+        const result = await response.json();
+        document.getElementById('result').innerHTML = `
+            <p>puuid: ${result.puuid}</p>
+            <p>gameName: ${result.gameName}</p>
+            <p>tagLine: ${result.tagLine}</p>
+        `;
     } catch (error) {
         console.error('Error:', error.message);
     }
