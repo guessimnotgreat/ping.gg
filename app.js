@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require("path");
 const app = express();
+const { fetchIDInfo } = require('./riotApi')
 
 // Middleware to parse JSON requests
 app.use(express.json());
@@ -26,12 +27,14 @@ var options = {
 app.use(express.static('public', options));
 
 // Handle form submission
-app.post('/submit', (req, res) => {
+app.post('/submit', async (req, res) => {
   const input1 = req.body.input1;
   const input2 = req.body.input2;
 
+  const idInfo = await riotApi.fetchIDInfo(input1, input2);
+
   // Process the data as needed
-  const result = `Received: ${input1} and ${input2}`;
+  const result = `Received: ${idInfo.puuid} and ${tagLine}`;
 
   // Send the result back to the client
   res.send(result);
