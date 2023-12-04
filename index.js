@@ -5,7 +5,7 @@ document.getElementById('myForm').addEventListener('submit', async function (e) 
     const input1 = document.getElementById('input1').value;
     const input2 = document.getElementById('input2').value;
 
-    const response = await fetch(`http://ping-gg-guessimnotgreats-projects.vercel.applocalhost:3000/hello?input1=${encodeURIComponent(input1)}&input2=${encodeURIComponent(input2)}`);
+    const response = await fetch(`https://ping-gg-guessimnotgreats-projects.vercel.app/hello?input1=${encodeURIComponent(input1)}&input2=${encodeURIComponent(input2)}`);
     const result = await response.text();
     document.getElementById('result').innerText = result;
 });
