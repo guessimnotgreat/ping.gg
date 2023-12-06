@@ -1,11 +1,9 @@
-const API_KEY = 'RGAPI-72c700dc-cdd4-44f9-9621-8e9896a65edb';
-const BASE_URL = 'https://asia.api.riotgames.com';
-const PATH = '/riot/account/v1/accounts/by-riot-id/';
+const { API_KEY, BASE_URL, PATHS } = require('./api-config');
 
 async function fetchIDInfo(gameName, tagLine) {
     try {
         const resp = await fetch(
-            BASE_URL + PATH + `${gameName}/${tagLine}`,
+            BASE_URL.asia + PATHS.idInfo + `${gameName}/${tagLine}`,
             getHeader()
         );
         if (!checkResponse(resp)) {

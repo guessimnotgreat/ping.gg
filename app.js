@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require("path");
 const app = express();
-const { fetchIDInfo } = require('./riotApi')
+const { fetchIDInfo } = require('./services/riotApi')
 
 // Middleware to parse JSON requests
 app.use(express.json());
