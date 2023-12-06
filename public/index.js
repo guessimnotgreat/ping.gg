@@ -1,8 +1,8 @@
-document.getElementById('myForm').addEventListener('submit', async function (e) {
+document.getElementById('summoner-form').addEventListener('submit', async function (e) {
     e.preventDefault();
 
-    const input1 = document.getElementById('input1').value;
-    const input2 = document.getElementById('input2').value;
+    const input1 = document.getElementById('game-name-input').value;
+    const input2 = document.getElementById('tagline-input').value;
 
     try {
         const response = await fetch('/submit', {
