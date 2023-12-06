@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require("path");
 const app = express();
-const { fetchIDInfo } = require('./services/riotApi')
+const { fetchIDInfo, fetchMatchesList } = require('./services/riotApi')
 
 // Middleware to parse JSON requests
 app.use(express.json());
@@ -40,6 +40,9 @@ app.post('/submit', async (req, res) => {
         gameName: idInfo.gameName,
         tagLine: idInfo.tagLine,
     };
+
+    const matchesList = await fetchMatchesList(result.puuid)
+    console.log(matchesList)
 
     // Send the result back to the client as JSON
     res.json(result);

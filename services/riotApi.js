@@ -17,6 +17,23 @@ async function fetchIDInfo(gameName, tagLine) {
     }
 }
 
+async function fetchMatchesList(puuid) {
+    try {
+        const resp = await fetch(
+            BASE_URL.sea + PATHS.matchesList + `${puuid}/ids?start=0&count=20`,
+            getHeader()
+        )
+        if (!checkResponse(resp)) {
+            return null;
+        }
+        const result = await resp.json()
+        console.log(result)
+        return result
+    } catch (error) {
+        
+    }
+}
+
 function getHeader() {
     return { headers: { "X-Riot-Token": API_KEY } };
 }
@@ -29,4 +46,7 @@ function checkResponse(resp) {
     return true;
 }
 
-module.exports = { fetchIDInfo };
+module.exports = { 
+    fetchIDInfo,
+    fetchMatchesList
+ };
