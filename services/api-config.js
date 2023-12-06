@@ -7,7 +7,8 @@ const BASE_URL = {
 
 const PATHS = {
     idInfo: '/riot/account/v1/accounts/by-riot-id/',
-    matchesList: '/lol/match/v5/matches/by-puuid/'
+    matchesList: '/lol/match/v5/matches/by-puuid/',
+    matchData: '/lol/match/v5/matches/'
 }
 
 

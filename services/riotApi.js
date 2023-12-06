@@ -34,6 +34,23 @@ async function fetchMatchesList(puuid) {
     }
 }
 
+async function fetchMatchData(matchId) {
+    try {
+        const resp = await fetch(
+            BASE_URL.sea + PATHS.matchData + matchId,
+            getHeader()
+        )
+        if (!checkResponse(resp)) {
+            return null;
+        }
+        const result = await resp.json()
+        console.log(result)
+        return result
+    } catch (error) {
+        
+    }
+}
+
 function getHeader() {
     return { headers: { "X-Riot-Token": API_KEY } };
 }
@@ -48,5 +65,6 @@ function checkResponse(resp) {
 
 module.exports = { 
     fetchIDInfo,
-    fetchMatchesList
+    fetchMatchesList,
+    fetchMatchData
  };
